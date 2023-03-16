@@ -1,0 +1,9 @@
+.content-left h1 {
+   color: #ffbe04;
+   text-transform: uppercase;
+   font-weight: 700;
+}
+
+.content-left table {
+   border-bottom: transparent;
+}
