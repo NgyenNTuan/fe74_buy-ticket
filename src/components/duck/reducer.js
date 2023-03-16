@@ -1,6 +1,5 @@
 import data from "./../seatsList.json";
 import { SELECT_SEAT, DELETE_SEAT, PAYMENT_SEAT } from "./type";
-import _ from "lodash";
 
 const initialState = {
    seatList: data,
@@ -8,9 +7,29 @@ const initialState = {
 };
 
 const userReducer = (state = initialState, action) => {
+   const deepCopyFunction = (inObject) => {
+      let outObject, value, key;
+
+      if (typeof inObject !== "object" || inObject === null) {
+         return inObject; // Return the value if inObject is not an object
+      }
+
+      // Create an array or object to hold the values
+      outObject = Array.isArray(inObject) ? [] : {};
+
+      for (key in inObject) {
+         value = inObject[key];
+
+         // Recursively (deep) copy for nested objects, including arrays
+         outObject[key] = deepCopyFunction(value);
+      }
+
+      return outObject;
+   };
+
    switch (action.type) {
       case SELECT_SEAT: {
-         const seatChecked = _.cloneDeep(state.seatChecked);
+         const seatChecked = deepCopyFunction(state.seatChecked);
 
          const foundSeat = seatChecked.find((item) => {
             return item.soGhe === action.payload.soGhe;
@@ -25,7 +44,7 @@ const userReducer = (state = initialState, action) => {
       }
 
       case DELETE_SEAT: {
-         const seatChecked = _.cloneDeep(state.seatChecked);
+         const seatChecked = deepCopyFunction(state.seatChecked);
 
          const foundIndex = seatChecked.findIndex((item) => {
             return item.soGhe === action.payload;
@@ -41,8 +60,8 @@ const userReducer = (state = initialState, action) => {
       }
 
       case PAYMENT_SEAT: {
-         let seatChecked = _.cloneDeep(state.seatChecked);
-         const seatList = _.cloneDeep(state.seatList);
+         let seatChecked = deepCopyFunction(state.seatChecked);
+         const seatList = deepCopyFunction(state.seatList);
 
          seatChecked.forEach((item) => {
             seatList.forEach((row) => {
