@@ -1,0 +1,53 @@
+.content-right {
+   color: white;
+}
+
+.content-right h2 {
+   font-weight: 700;
+   font-size: 30px;
+   margin: 2rem 0;
+}
+
+.item-color {
+   display: flex;
+   align-items: center;
+   margin-bottom: 4px;
+}
+
+.item-color p {
+   margin: 0;
+   font-weight: 700;
+}
+
+.box-color {
+   width: 35px;
+   height: 35px;
+   margin-right: 8px;
+   border-radius: 5px;
+}
+
+.color--orange {
+   background-color: orange;
+}
+
+.color--green {
+   background-color: rgb(109, 238, 109);
+}
+
+.color--white {
+   background-color: #efefef;
+}
+
+.btn-delete {
+   background-color: transparent;
+   font-weight: 800;
+   color: red;
+}
+
+.text-warning {
+   font-weight: 700;
+}
+
+.text-white {
+   font-weight: 700;
+}
